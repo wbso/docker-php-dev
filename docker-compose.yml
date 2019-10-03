@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+  app:
+    image: wbso/php7.3-fpm-dev
+    working_dir: /var/www
+    volumes:
+      - ./src:/var/www
+      - ./php.ini:/usr/local/etc/php/conf.d/local.ini
+
+  webserver:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./src:/var/www
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+
+  db:
+    image: mariadb
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: secret
+#     volumes:
+#       - dbdata:/var/lib/mysql/
+
+# volumes:
+#   dbdata:
+#     driver: local

@@ -22,6 +22,6 @@ RUN apt-get update \
     && ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/ \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-configure gmp \
-    && docker-php-ext-install bcmath iconv mbstring pdo pdo_mysql zip gd gmp mysqli calendar\
+    && docker-php-ext-install bcmath exif iconv mbstring pdo pdo_mysql zip gd gmp mysqli calendar\
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && rm -rf /var/lib/apt/lists/*
